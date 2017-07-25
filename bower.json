@@ -1,0 +1,28 @@
+{
+  "name": "hrmSPA",
+  "description": "A Human Resource Management SPA",
+  "main": "index.html",
+  "authors": [
+    "larslemos"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "angular": "~1.5.11",
+    "bootstrap": "^3.3.7",
+    "jquery": "^2.1",
+    "angular-mocks": "~1.5.11"
+  },
+  "resolutions": {
+    "angular": "~1.5.11"
+  }
+}

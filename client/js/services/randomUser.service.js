@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app')
+    .module('app.user')
     .factory('randomUser', randomUser);
 
     randomUser.$inject = ['$http', 'API_URL'];
@@ -14,7 +14,17 @@
       };
 
       function getUser() {
-        $http.get(API_URL+'/random-user' );
+        return $http.get(API_URL+'/random-user')
+            .then(getUserComplete)
+            .catch(getUserFailed);
+
+            function getUserComplete(data) {
+                return data;
+            }
+
+            function getUserFailed(error) {
+              return error;
+            }
       }
 
     }

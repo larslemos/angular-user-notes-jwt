@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('notes').directive('modal', modal);
+  angular.module('app.notes').directive('modal', modal);
 
   function modal() {
       return {
@@ -9,5 +9,5 @@
           templateUrl: 'templates/modal.html'
       }
   }
-  
+
 })();

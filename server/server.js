@@ -34,7 +34,7 @@ app.get('/ping', function(req, res, next) {
     res.send('pong');
 });
 
-app.get('api/random-user', function(req, res, next) {
+app.get('/api/random-user', function(req, res, next) {
   var user = faker.helpers.createCard();
   user.avatar = faker.image.avatar();
 
@@ -42,6 +42,10 @@ app.get('api/random-user', function(req, res, next) {
   res.json(user);
   // res.send(JSON.stringify(user));
   // res("Working");
+});
+
+app.post('/api/login', authenticate, function(req, res, next) {
+
 });
 
 switch (environment) {

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('notes').factory('uuid', uuid);
+    angular.module('app.notes').factory('uuid', uuid);
 
     function uuid() {
       return {

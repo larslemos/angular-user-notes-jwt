@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('notes').factory('localStorageService', localStorageService);
+    angular.module('app.notes').factory('localStorageService', localStorageService);
 
     localStorageService.$inject = ['$window'];
 
@@ -15,5 +15,5 @@
           }
         };
     }
-    
+
 })();

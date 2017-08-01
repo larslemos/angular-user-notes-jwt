@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('notes').directive('enableSaveOnEdit', enableSaveOnEdit);
+  angular.module('app.notes').directive('enableSaveOnEdit', enableSaveOnEdit);
 
   enableSaveOnEdit.$inject = ['$document'];
 

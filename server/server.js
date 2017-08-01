@@ -13,6 +13,12 @@ var logger = require('morgan');
 var port = process.env.PORT || 7203;
 var routes;
 
+//Mini DB
+var user = {
+    username: 'lars',
+    password: 'p'
+};
+
 var app = express();
 
 var environment = process.env.NODE_ENV;
@@ -45,8 +51,23 @@ app.get('/api/random-user', function(req, res, next) {
 });
 
 app.post('/api/login', authenticate, function(req, res, next) {
+  res.send(user);
 
 });
+
+//UTIL FUNCTIONS
+function authenticate(req, res, next) {
+  var body = req.body;
+  if(!body.username || !body.password) {
+    console.warn("AUTHENTICATE: Empty fields");
+    return res.status(400).end('Must provide username or password');
+  }
+  if(body.username !== user.username || body.password !== user.password) {
+      console.warn("AUTHENTICATE: Wrong Credentials ");
+      return res.status(401).end('Username or password incorret');
+  }
+    next();
+}
 
 switch (environment) {
     case 'build':

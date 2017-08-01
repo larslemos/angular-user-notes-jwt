@@ -2,6 +2,9 @@
 
 <h3> Get Random User </h3>
 
+  <div ng-show="vm.randomUser">
+    <img src="{{vm.randomUser.avatar}}" alt="Image">
+  </div>
 
   <form ng-submit="vm.login(vm.username, vm.password)" class="horizontal-form"
      method="post">
@@ -20,7 +23,7 @@
 
     <button type="button" class="btn btn-primary" ng-click="vm.login()">
         Login
-    </button> 
+    </button>
   </div>
 
   <div class="form-group">

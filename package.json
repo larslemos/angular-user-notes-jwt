@@ -1,6 +1,6 @@
 {
-  "name": "md-hrm",
-  "version": "1.0.0",
+  "name": "angular-user-notes-jwt",
+  "version": "0.0.1",
   "description": "",
   "main": "app.js",
   "dependencies": {

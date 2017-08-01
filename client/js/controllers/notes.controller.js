@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('notes').controller('NotesController', NotesController);
+    .module('app.notes').controller('NotesController', NotesController);
 
     NotesController.$inject = ['$scope', '$document', '$timeout', 'localStorageService', 'uuid'];
 
@@ -27,5 +27,6 @@
             }
         }
     }
+
 
 })();

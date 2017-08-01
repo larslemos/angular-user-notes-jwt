@@ -20,7 +20,8 @@
     "angular": "~1.5.11",
     "bootstrap": "^3.3.7",
     "jquery": "^2.1",
-    "angular-mocks": "~1.5.11"
+    "angular-mocks": "~1.5.11",
+    "angular-ui-router": "^1.0.5"
   },
   "resolutions": {
     "angular": "~1.5.11"

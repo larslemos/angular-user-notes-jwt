@@ -1,0 +1,21 @@
+
+
+<h3> Get Random User </h3>
+
+<div class="">
+  <form ng-submit="vm.login(vm.username, vm.password)"
+       class=""  method="post">
+      <label for="username"> username: <input type="text" name="vm.username" ></label>
+         <label for="password"> password <input type="text" name="vm.password"  ></label>
+    
+  </form>
+</div>
+
+<div class="">
+
+    <button type="button" class="btn btn-default" ng-click="vm.getRandomUser()">
+        Get User
+    </button>
+
+    <pre ng-bind="vm.randomUser | json"> </pre>
+</div>

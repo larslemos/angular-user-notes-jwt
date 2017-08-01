@@ -2,10 +2,11 @@
 'use strict';
 
 var express = require('express');
+var faker = require('faker');
 var bodyParser = require('body-parser');
 var compress = require('compression');
 var cors = require('cors');
-var errorHandler = require('./utils/errorHandler');
+var errorHandler = require('./utils/errorHandler')();
 var four0four = require('./utils/404');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -21,7 +22,7 @@ app.use(bodyParser.json());
 app.use(compress());
 app.use(logger('dev'));
 app.use(cors());
-// app.use(errorHandler.init);
+app.use(errorHandler.init);
 
 // routes = require('./routes/index')(app);
 console.log('About to crank up node');
@@ -31,6 +32,16 @@ console.log('NODE_ENV=' + environment);
 app.get('/ping', function(req, res, next) {
     console.log(req.body);
     res.send('pong');
+});
+
+app.get('api/random-user', function(req, res, next) {
+  var user = faker.helpers.createCard();
+  user.avatar = faker.image.avatar();
+
+  res.setHeader('Content-Type', 'application/json');
+  res.json(user);
+  // res.send(JSON.stringify(user));
+  // res("Working");
 });
 
 switch (environment) {
@@ -53,13 +64,14 @@ switch (environment) {
 
         // All the assets are served at this point.
         // Any invalid calls for templateUrls are under app/* and should return 404
-        app.use('/app/*', function(req, res, next) {
+        app.use('/client/app/*', function(req, res, next) {
             four0four.send404(req, res);
         });
 
         // Any deep link calls should return index.html
-        app.use('/*', express.static('/client/app.html'));
-        break
+        app.use('/', express.static('../client/app.html'));
+          app.use('/*', express.static('./client/app.html'));
+        break;
 }
 
 app.listen(port, function() {

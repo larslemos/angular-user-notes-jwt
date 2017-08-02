@@ -4,14 +4,16 @@
    angular.module('app.user')
           .controller('UserCardController', UserCardController);
 
-    UserCardController.$inject = ['randomUser', 'userLogin'];
+    UserCardController.$inject = ['randomUser', 'userAuth'];
 
-    function UserCardController(randomUser, userLogin) {
+    function UserCardController(randomUser, userAuth) {
       var vm = this;
+      console.warn(vm);
 
       vm.getRandomUser = getRandomUser;
 
       vm.login = login;
+      vm.logout = logout;
 
       function getRandomUser() {
         randomUser.getUser().then(function success(response) {
@@ -19,10 +21,15 @@
         });
       }
 
-      function login(username, password) {
-          userLogin.login(username, password).then(function success(response) {
-            vm.user = response.data;
+      function login() {
+          userAuth.login(vm.username, vm.password).then(function success(response) {
+            vm.user = response.data.user;
           }, handleError);
+      }
+
+      function logout() {
+        userAuth.logout();
+        vm.user = null;
       }
 
       function handleError(response) {

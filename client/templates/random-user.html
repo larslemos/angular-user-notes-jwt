@@ -6,28 +6,29 @@
     <img src="{{vm.randomUser.avatar}}" alt="Image">
   </div>
 
-  <form ng-submit="vm.login(vm.username, vm.password)" class="horizontal-form"
-     method="post">
+  <form ng-submit="vm.login()" class="horizontal-form"
+     method="post" name="loginForm">
      <div class="form-group">
         <label for="username"> username:
-          <input type="text" name="vm.username" class="form-control" ></label>
+          <input type="text" name="username" ng-model="vm.username" class="form-control" ></label>
       </div>
 
      <div class="form-group">
      <label for="password"> password
-       <input type="text" name="vm.password"  class="form-control"></label>
+       <input type="text" name="password" ng-model="vm.password"  class="form-control"></label>
      </div>
-
   </form>
   <div class="form-group">
-
     <button type="button" class="btn btn-primary" ng-click="vm.login()">
         Login
+    </button>
+    <button type="button" class="btn btn-danger pull-right" ng-click="vm.logout()">
+        Logout
     </button>
   </div>
 
   <div class="form-group">
-
+    <h3> Welcome {{ vm.user.username }}</h3>
     <button type="button" class="btn btn-primary" ng-click="vm.getRandomUser()">
         Get User
     </button>

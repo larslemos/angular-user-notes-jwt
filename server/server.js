@@ -4,9 +4,11 @@
 var express = require('express');
 var faker = require('faker');
 var bodyParser = require('body-parser');
+var jwt = require('jsonwebtoken');
 var compress = require('compression');
 var cors = require('cors');
 var errorHandler = require('./utils/errorHandler')();
+var expressJwt = require('express-jwt');
 var four0four = require('./utils/404');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -19,6 +21,8 @@ var user = {
     password: 'p'
 };
 
+var jwtSecret = 'lemoslars';
+
 var app = express();
 
 var environment = process.env.NODE_ENV;
@@ -29,6 +33,7 @@ app.use(compress());
 app.use(logger('dev'));
 app.use(cors());
 app.use(errorHandler.init);
+app.use(expressJwt({ secret : jwtSecret}).unless({path: ['/']}));
 
 // routes = require('./routes/index')(app);
 console.log('About to crank up node');
@@ -51,8 +56,13 @@ app.get('/api/random-user', function(req, res, next) {
 });
 
 app.post('/api/login', authenticate, function(req, res, next) {
-  res.send(user);
-
+  var token = jwt.sign({
+      username: user.username,
+  }, jwtSecret);
+  res.send({
+    token:token,
+    user: user
+  });
 });
 
 //UTIL FUNCTIONS
@@ -94,8 +104,8 @@ switch (environment) {
         });
 
         // Any deep link calls should return index.html
-        app.use('/', express.static('../client/app.html'));
-          app.use('/*', express.static('./client/app.html'));
+        app.use('/', express.static('../client/index.html'));
+          // app.use('/*', express.static('./client/app.html'));
         break;
 }
 
